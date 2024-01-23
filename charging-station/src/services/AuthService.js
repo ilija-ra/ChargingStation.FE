@@ -8,8 +8,13 @@ export default {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(response => response.json())
-        .then(data => data);
+        }).then(response => {
+            if (response.status !== 401) {//401 because passport by default return 401 status if user is not authorized
+                return response.json().then(data => data);
+            } else {
+                return { isAuthenticated: false, user: { username: "", role: "" }};
+            }
+        })
     },
     register: user => {
         return fetch(`${apiUrl}/users/register`, {

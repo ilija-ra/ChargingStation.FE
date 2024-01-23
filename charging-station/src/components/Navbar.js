@@ -19,8 +19,6 @@ const Navbar = props => {
         return (
             <>
                 <Link to="/"><li className="nav-item nav-link">Home</li></Link>
-                <Link to="/login"><li className="nav-item nav-link">Login</li></Link>
-                <Link to="/register"><li className="nav-item nav-link">Register</li></Link>
                 {
                     user.role === 'admin' ? <Link to="/users"><li className="nav-item nav-link">Users</li></Link> : null
                 }

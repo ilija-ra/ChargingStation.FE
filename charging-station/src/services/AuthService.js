@@ -1,8 +1,6 @@
-import apiUrl from '../config.js'
-
 export default {
     login: user => {
-        return fetch(`${apiUrl}/users/login`, {
+        return fetch(`/users/login`, {
             method: "post",
             body: JSON.stringify(user),
             headers: {
@@ -17,7 +15,7 @@ export default {
         })
     },
     register: user => {
-        return fetch(`${apiUrl}/users/register`, {
+        return fetch(`/users/register`, {
             method: "post",
             body: JSON.stringify(user),
             headers: {
@@ -27,12 +25,12 @@ export default {
         .then(data => data);
     },
     logout: () => {
-        return fetch(`${apiUrl}/users/logout`)
+        return fetch(`/users/logout`)
             .then(response => response.json())
             .then(data => data);
     },
     isAuthenticated: () => {
-        return fetch(`${apiUrl}/users/authenticated`)
+        return fetch(`/users/authenticated`)
             .then(response => {
                 if (response.status !== 401) {//401 because passport by default return 401 status if user is not authorized
                     return response.json().then(data => data);
